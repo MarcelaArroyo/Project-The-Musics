@@ -1,12 +1,15 @@
 import React from 'react';
+import { Redirect } from 'react-router';
+import { createUser } from '../services/userAPI';
+import Loagind from '../components/Loading';
 
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       name: '',
-      // Primeiro Código Requisito 2:
-      // disabled: 'disabled',
+      loading: false,
+      button: false,
     };
   }
 
@@ -14,31 +17,26 @@ class Login extends React.Component {
     this.setState({
       [name]: value,
     });
-    // Primeiro Código Requisito 2:
-    // () => {
-    //   this.setState({
-    //     disabled: this.validationDisabledButton(),
-    //   });
-    // });
   }
 
-  // Primeiro Código Requisito 2:
-  // validationDisabledButton = () => {
-  //   const { name } = this.state;
-  //   if (name.length < minCharacters) {
-  //     return 'disabled';
-  //   }
-  //   return '';
-  // }
-
-  handleClick = () => {
-
+  handleClick = async () => {
+    const { name } = this.state;
+    this.setState({ loading: true });
+    await createUser({ name: `${name}` });
+    this.setState({
+      loading: false,
+      button: true,
+    });
   }
 
   render() {
-    const { name } = this.state;
+    const { name, loading, button } = this.state;
     const minCharacters = 3;
-
+    if (loading) {
+      return (<Loagind />);
+    } if (button) {
+      return <Redirect to="/search" />;
+    }
     return (
       <div data-testid="page-login">
         <h2>Login</h2>
