@@ -11,7 +11,7 @@ import NotFound from '../pages/NotFound';
 class Content extends React.Component {
   render() {
     return (
-      <main>
+      <section>
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route path="/search" component={ Search } />
@@ -21,7 +21,7 @@ class Content extends React.Component {
           <Route path="/profile/edit" component={ ProfileEdit } />
           <Route path="*" component={ NotFound } />
         </Switch>
-      </main>
+      </section>
     );
   }
 }
