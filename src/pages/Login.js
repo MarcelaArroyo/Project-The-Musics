@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
-import './Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -41,14 +40,14 @@ class Login extends React.Component {
     return (
       <div className="login" data-testid="page-login">
         <h2 className="title-login">Login</h2>
-        <form>
+        <form className="form-login">
           <input
             data-testid="login-name-input"
             name="name"
             type="text"
             value={ name }
             onChange={ this.handleChange }
-            placeholder="nome"
+            placeholder="Nome"
           />
           <button
             data-testid="login-submit-button"
