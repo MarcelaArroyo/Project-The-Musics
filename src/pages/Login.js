@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { createUser } from '../services/userAPI';
-import Loagind from '../components/Loading';
+import Loading from '../components/Loading';
+import './Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -33,21 +34,21 @@ class Login extends React.Component {
     const { name, loading, button } = this.state;
     const minCharacters = 3;
     if (loading) {
-      return (<Loagind />);
+      return (<Loading />);
     } if (button) {
       return <Redirect to="/search" />;
     }
     return (
-      <div data-testid="page-login">
-        <h2>Login</h2>
+      <div className="login" data-testid="page-login">
+        <h2 className="title-login">Login</h2>
         <form>
-          Nome:
           <input
             data-testid="login-name-input"
             name="name"
             type="text"
             value={ name }
             onChange={ this.handleChange }
+            placeholder="nome"
           />
           <button
             data-testid="login-submit-button"
