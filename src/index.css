@@ -83,8 +83,17 @@ input {
   padding: 4px;
 }
 
-.section-search {
-  height: 91vh;
-  background-size: cover;
-  background-image: url("https://i.pinimg.com/originals/77/6a/6e/776a6e81677d8d6313f7e14fb81cabe7.jpg");
+.list-albums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  align-items: center;
+}
+
+.list-albums li {
+  width: 130px;
+  height: 140px;
+  text-align: center;
+  margin-top: 30px;
 }
