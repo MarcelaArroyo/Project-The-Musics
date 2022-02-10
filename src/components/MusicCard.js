@@ -9,6 +9,7 @@ class MusicCard extends React.Component {
     this.state = {
       loading: false,
       favoritesSongs: [],
+      checked: false,
     };
   }
 
@@ -26,11 +27,11 @@ class MusicCard extends React.Component {
     const { track } = this.props;
     this.setState({ loading: true });
     await addSong(track);
-    this.setState({ loading: false });
+    this.setState({ loading: false, checked: true });
   }
 
   render() {
-    const { loading, favoritesSongs } = this.state;
+    const { loading, favoritesSongs, checked } = this.state;
     const { track: { trackName, previewUrl, trackId } } = this.props;
     return (
       <section>
@@ -51,7 +52,11 @@ class MusicCard extends React.Component {
               data-testid={ `checkbox-music-${trackId}` }
               onClick={ this.handleClick }
               value={ trackId }
-              checked={ favoritesSongs.some((song) => (song.trackId === trackId)) }
+              checked={
+                !checked
+                  ? favoritesSongs.some((song) => song.trackId === trackId)
+                  : true
+              }
             />
           </label>
         )}
